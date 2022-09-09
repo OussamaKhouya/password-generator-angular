@@ -9,7 +9,6 @@
   cursor: pointer;
 }
 
-
 #generator {
   max-width: 500px;
   border-radius: 10px;
@@ -20,19 +19,18 @@
 
   header {
     background-color: #175ddc;
-    padding: .7rem 0;
+    padding: 0.7rem 0;
     width: 100%;
     h1 {
       color: #fff;
       font-size: 1.2rem;
       text-align: center;
-
     }
   }
 
   .output {
     display: flex;
-    padding:  1rem 1.5rem 1.5rem;
+    padding: 1rem 1.5rem 1.5rem;
     justify-items: center;
     .output-text {
       font-size: 1.2rem;
@@ -44,9 +42,9 @@
         background-color: inherit;
         font-size: 1.1rem;
       }
-
     }
-    .output-copy, .output-next {
+    .output-copy,
+    .output-next {
       flex: 1;
       padding-left: 15px;
       color: #000;
@@ -57,12 +55,11 @@
     }
   }
 
-
   .choice {
     background-color: #fff;
     padding: 1rem 1.5rem;
-    border-top: 1px #7777 solid;
-    border-bottom: 1px #7777 solid;
+    border-top: 1px #ddd solid;
+    border-bottom: 1px #ddd solid;
     .title {
       color: #777;
       font-size: small;
@@ -77,23 +74,24 @@
   }
 
   .options {
+    border-bottom: 1px #ddd solid;
+
     .type {
       background-color: #fff;
       padding: 10px 1.5rem;
-      border-top: 1px #7777 solid;
-      border-bottom: 1px #7777 solid;
+      border-top: 1px #ddd solid;
+      border-bottom: 1px #ddd solid;
       .title {
         padding-bottom: 5px;
       }
     }
     .options-a {
-      margin: 10px 0;
+      margin-top: 10px;
       background-color: #fff;
-      border-top: 1px #7777 solid;
-      border-bottom: 1px #7777 solid;
+      border-top: 1px #ddd solid;
       padding: 0 1.5rem;
 
-      .input-group{
+      .input-group {
         padding: 10px 0 10px 0;
         border-bottom: 1px #f0f0f0 solid;
         display: flex;
@@ -104,30 +102,54 @@
           border: none;
           padding-left: 10px;
         }
+      }
+    }
 
+    .options-b {
+      margin-top: 10px;
+      background-color: #fff;
+      border-top: 1px #ddd solid;
+      padding: 0 1.5rem;
+
+      .input-group {
+        padding: 10px 0 10px 0;
+        border-bottom: 1px #f0f0f0 solid;
+        display: flex;
+        justify-content: space-between;
+        input[type="number"],
+        input[type="text"] {
+          outline: none;
+          max-width: 45px;
+          border: none;
+          padding-left: 10px;
+        }
+        input[type="text"] {
+          width: 20px;
+        }
       }
     }
   }
 
   .generate {
+    background-color: #f0f0f0;
     padding: 1rem 1rem;
-      button{
-        padding: .8rem 2rem;
-        background-color: #175ddc;
-        opacity: 0.9;
-        color: #fff;
-        width: 100%;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-        &:hover {
-          opacity: 1;
-        }
-        &:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
+    button {
+      padding: 0.8rem 2rem;
+      background-color: #175ddc;
+      opacity: 0.9;
+      color: #fff;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      &:hover {
+        opacity: 1;
       }
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
   }
 }
 
@@ -164,7 +186,7 @@
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color:  transparent transparent #175ddc transparent;
+  border-color: transparent transparent #175ddc transparent;
 }
 
 .tooltip .tooltiptext.visible {

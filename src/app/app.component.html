@@ -1,83 +1,190 @@
 <div id="generator">
-
   <header>
     <h1>Generator</h1>
   </header>
   <!-- output -->
   <div class="output">
     <p class="output-text">
-      <input type="text" [value]="password">
+      <input type="text" [value]="password" />
     </p>
     <div class="tooltip">
       <button class="output-copy btn" (click)="copyToClipboard()">
-        <span class="tooltiptext" [ngClass]="{'visible':copiedmsg}" id="myTooltip">
+        <span
+          class="tooltiptext"
+          [ngClass]="{ visible: copiedmsg }"
+          id="myTooltip"
+        >
           password copied!
         </span>
         <fa-icon [icon]="copyIcon" title="Copy Password"></fa-icon>
       </button>
     </div>
     <button class="output-next btn">
-      <fa-icon [icon]="refrechIcon" (click)="onButtonClick()" title="Regenerate Password"></fa-icon>
+      <fa-icon
+        [icon]="refrechIcon"
+        (click)="onButtonClick()"
+        title="Regenerate Password"
+      ></fa-icon>
     </button>
   </div>
   <!-- password or username -->
   <div class="choice">
     <p class="title">What would you like to generate?</p>
     <div class="input-group">
-      <input type="radio" name="choice" checked id="choice-password">
+      <input type="radio" name="choice" checked id="choice-password" />
       <label for="choice-password"> Password</label>
     </div>
     <div class="input-group">
-      <input type="radio" name="choice" id="choice-username" disabled>
+      <input type="radio" name="choice" id="choice-username" disabled />
       <label for="choice-username"> Username</label>
     </div>
-
   </div>
   <h4>OPTIONS</h4>
   <div class="options">
     <div class="type">
       <p class="title">Password Type</p>
       <div class="input-group">
-        <input type="radio" name="type" checked id="type-password">
+        <input
+          type="radio"
+          name="type"
+          [checked]="optionsA"
+          (change)="onChangeType(true)"
+          id="type-password"
+        />
         <label for="type-password"> Password</label>
       </div>
       <div class="input-group">
-        <input type="radio" name="type" id="type-username" disabled>
+        <input
+          type="radio"
+          name="type"
+          [checked]="!optionsA"
+          (change)="onChangeType(false)"
+          id="type-username"
+        />
         <label for="type-username"> Passphrase</label>
       </div>
     </div>
 
-    <div class="options-a">
+    <div class="options-a" *ngIf="optionsA">
       <div class="input-group">
-        <label for="Length">Length
-          <input type="number" name="" id="Length" min="5" max="120" [value]="length"
-            (input)="onChangeLength($any($event.target).value)">
+        <label for="Length"
+          >Length
+          <input
+            type="number"
+            name=""
+            id="Length"
+            min="5"
+            max="120"
+            [value]="length"
+            (input)="onChangeLength($any($event.target).value)"
+          />
         </label>
-        <input type="range" name="" id="Length" min="5" max="120" [value]="length" step="1"
-          (input)="onChangeLength($any($event.target).value)">
+        <input
+          type="range"
+          name=""
+          id="Length"
+          min="5"
+          max="120"
+          [value]="length"
+          step="1"
+          (input)="onChangeLength($any($event.target).value)"
+        />
       </div>
       <div class="input-group">
         <label for="az-majuscule">A-Z</label>
-        <input type="checkbox" (change)="onChangeUseLettersM()" [checked]="includeLettersM" id="az-majuscule">
+        <input
+          type="checkbox"
+          (change)="onChangeUseLettersM()"
+          [checked]="includeLettersM"
+          id="az-majuscule"
+        />
       </div>
       <div class="input-group">
         <label for="az-miniscule">a-z</label>
-        <input type="checkbox" (change)="onChangeUseLettersm()" [checked]="includeLettersm" checked id="az-miniscule">
+        <input
+          type="checkbox"
+          (change)="onChangeUseLettersm()"
+          [checked]="includeLettersm"
+          checked
+          id="az-miniscule"
+        />
       </div>
       <div class="input-group">
         <label for="numbers">0-9</label>
-        <input type="checkbox" (change)="onChangeUseNumbers()" [checked]="includeNumbers" id="numbers">
+        <input
+          type="checkbox"
+          (change)="onChangeUseNumbers()"
+          [checked]="includeNumbers"
+          id="numbers"
+        />
       </div>
       <div class="input-group">
         <label for="symbols">!@#$%&*^</label>
-        <input type="checkbox" (change)="onChangeUseSymbols()" [checked]="includeSymbols" id="symbols">
+        <input
+          type="checkbox"
+          (change)="onChangeUseSymbols()"
+          [checked]="includeSymbols"
+          id="symbols"
+        />
       </div>
+    </div>
 
+    <div class="options-b" *ngIf="!optionsA">
+      <div class="input-group">
+        <label for="nbrW">Number of Words</label>
+        <input
+          type="number"
+          [value]="numWords"
+          min="3"
+          max="20"
+          id="nbrW"
+          (input)="onChangNumWords($any($event.target).value)"
+        />
+      </div>
+      <div class="input-group">
+        <label for="wordSep">Word Separator</label>
+        <input
+          type="text"
+          [value]="separator"
+          (input)="onChangSeparator($any($event.target).value)"
+          maxlength="1"
+          id="wordSep"
+        />
+      </div>
+      <div class="input-group">
+        <label for="capitalize">Capitalize</label>
+        <input
+          type="checkbox"
+          [checked]="capitalize"
+          (change)="onChangeCapitalize()"
+          id="capitalize"
+        />
+      </div>
+      <div class="input-group">
+        <label for="includNum">Include Number</label>
+        <input
+          type="checkbox"
+          [checked]="includNum"
+          (change)="onChangeIncludNumb()"
+          id="includNum"
+        />
+      </div>
     </div>
   </div>
   <div class="generate">
-    <button [disabled]="!(length && (includeLettersm || includeLettersM ||includeSymbols || includeNumbers))"
-      (click)="onButtonClick()">Generate!</button>
+    <button
+      [disabled]="
+        !(
+          length &&
+          (includeLettersm ||
+            includeLettersM ||
+            includeSymbols ||
+            includeNumbers)
+        )
+      "
+      (click)="onButtonClick()"
+    >
+      Generate!
+    </button>
   </div>
-
 </div>
